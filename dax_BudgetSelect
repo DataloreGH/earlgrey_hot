@@ -1,0 +1,15 @@
+EVALUATE 
+ (
+    FILTER (
+        SUMMARIZE (
+            'Sales Output',
+            'Store Info'[Store #],
+            'Item Info'[Item Number ID],
+            'Lowes Weeks'[Lowes_Week],
+            "Budget", SUM ( 'Sales Output'[By SKU By Week Budget] )
+        ),
+        SUM ( 'Sales Output'[By SKU By Week Budget] ) > 0
+            && 'Lowes Weeks'[Lowes_Week] >= 10
+            && 'Lowes Weeks'[Lowes_Week] <= 13
+    )
+)
